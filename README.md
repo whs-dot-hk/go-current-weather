@@ -7,5 +7,6 @@ OWM_API_KEY=[owm api key]
 ## Example
 ```
 $ go run main.go
-18°C
+$ curl localhost:8000
+20°C
 ```
