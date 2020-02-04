@@ -30,8 +30,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	port := os.Getenv("PORT")
-
 	if os.Getenv("APP_ENV") != "production" {
 		err := godotenv.Load()
 		if err != nil {
@@ -44,10 +42,9 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", Handler)
 
-	if port == "" {
+	port := ":" + os.Getenv("PORT")
+	if port == ":" {
 		port = ":8000"
-	} else {
-		port = fmt.Sprintf(":%s", port)
 	}
 
 	log.Fatal(http.ListenAndServe(port, r))
